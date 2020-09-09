@@ -84,7 +84,8 @@ class PlacesAutocomplete extends React.Component {
       this.props.onError(status, this.clearSuggestions);
       return;
     }
-    const { highlightFirstSuggestion } = this.props;
+    const { highlightFirstSuggestion, countrySearch } = this.props;
+    if (countrySearch) predictions = predictions.filter(({types}) => types.includes('country'))
     this.setState({
       suggestions: predictions.map((p, idx) => ({
         id: p.id,
